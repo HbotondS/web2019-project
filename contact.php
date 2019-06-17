@@ -9,10 +9,9 @@
     <title>Testing</title>
 </head>
 <body>
-<ul>
-    <li><a href="index.php">Home</a></li>
-    <li><a href="contact.php">Contact</a></li>
-</ul>
+<?php
+    include 'projectsList.php';
+?>
 <?php
     if (isset($_SESSION['user'])) {
         echo 'Hello ' . $_SESSION['user'];

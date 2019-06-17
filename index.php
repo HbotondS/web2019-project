@@ -9,10 +9,9 @@
     <title>Testing</title>
 </head>
 <body>
-<ul>
-    <li><a href="index.php">Home</a></li>
-    <li><a href="contact.php">Contact</a></li>
-</ul>
+<?php
+    include 'projectsList.php';
+?>
 
 <!-- lehet hasznalni post vagy get method-t -->
 <!-- nekem a post jobban tetszik mert az ertekek nem jelennek meg az urlben -->
