@@ -23,7 +23,7 @@
                 $pwd = mysqli_real_escape_string($conn, $pwd);
                 $pwdHashed = md5($pwd);
 
-                $sql = "insert into users (firsname, lastname, email, username, password) 
+                $sql = "insert into users (firstname, lastname, email, username, password) 
                         values ('$first', '$last', '$email', '$uid', '$pwdHashed');";
                 mysqli_query($conn, $sql);
 
