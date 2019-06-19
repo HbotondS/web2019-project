@@ -1,3 +1,7 @@
+<?php
+    include 'includes/autoload.php'
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,18 +10,21 @@
 </head>
 <body>
 <h2>Sign up</h2>
-<form action="../includes/signup.php" method="post">
+<form action="includes/signup.php" method="post">
     <?php
+        $user = new User('Dani', 'fsa', 'fsa', 'fsa', 'fsa');
+        echo $user->getFirstname() . '<br>';
+
         if (isset($_GET['first'])) {
             $first = $_GET['first'];
-            echo '<input type="text" name="first" placeholder="Firstname" value="'.$first.'">';
+            echo '<input type="text" name="first" placeholder="Firstname" value="' . $first . '">';
         } else {
             echo '<input type="text" name="first" placeholder="Firstname">';
         }
 
         if (isset($_GET['last'])) {
             $last = $_GET['last'];
-            echo '<input type="text" name="last" placeholder="Lastname" value="'.$last.'">';
+            echo '<input type="text" name="last" placeholder="Lastname" value="' . $last . '">';
         } else {
             echo '<input type="text" name="last" placeholder="Lastname">';
         }
@@ -26,7 +33,7 @@
     <?php
         if (isset($_GET['uid'])) {
             $uid = $_GET['uid'];
-            echo '<input type="text" name="uid" placeholder="Username" value="'.$uid.'">';
+            echo '<input type="text" name="uid" placeholder="Username" value="' . $uid . '">';
         } else {
             echo '<input type="text" name="uid" placeholder="Username">';
         }
