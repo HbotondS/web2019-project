@@ -1,5 +1,5 @@
 <?php
-    include "includes/autoload.php";
+    include "../includes/autoload.php";
 ?>
 
 <!DOCTYPE html>
