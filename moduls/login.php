@@ -18,6 +18,9 @@
             if ($user->checkPwd($pwd)) {
                 //todo: login screen
                 echo 'sikeres bejelentkezes';
+                session_start();
+                $_SESSION['uid'] = $uid;
+                header("Location: ../views/start_view.php");
 
             } else {
                 //todo: handle exception
