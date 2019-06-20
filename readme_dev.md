@@ -1,0 +1,1 @@
+ezen a branchen fogok majd fejleszteni, es a nagyobb stabil modositasokat majd mergelom a masterba

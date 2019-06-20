@@ -90,32 +90,35 @@
         }
 
         /**
+         * Kiolvassa az adatokat ha ismert az felhasznalonev
+         */
+        function getDataByUsername($username) {
+            $username = $this->db->quote($username, PDO::PARAM_STR);
+
+            $sql = "SELECT * FROM users WHERE username = $username";
+            return $this->getData($sql);
+        }
+
+        /**
          * Egy lekerdezes alapjan lekeri egy felhasznalo adatait
          *
          * @param string, az sql lekerdezes
-         * @return bool, igazat terit vissza ha a lekerdezes sikeres
-         *         maskepp egy Exception-t dob
          * @throws Exception, mikor valamilyen adatbazis hiba van
          */
         private function getData($sql) {
-            try {
-                $stmt = $this->db->query($sql);
-                if ($a = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    if (!isset($a['id'])) {
-                        throw new Exception("Adatbázis hiba, hiányzó mező");
-                    }
-                    $this->id = $a['id'];
-                    $this->name = $a['name'];
-                    $this->email = $a['email'];
-                    $this->username = $a['username'];
-                    $this->password = $a['password'];
-                    return true;
-                } else {
-                    // nincs ilyen felhasznalo
-                    throw new Exception("Nemlétező felhasználó");
+            $stmt = $this->db->query($sql);
+            if ($a = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                if (!isset($a['id'])) {
+                    throw new Exception("Adatbázis hiba, hiányzó mező");
                 }
-            } catch (Exception $e) {
-                dbError($e->getMessage());
+                $this->id = $a['id'];
+                $this->name = $a['name'];
+                $this->email = $a['email'];
+                $this->username = $a['username'];
+                $this->password = $a['password'];
+            } else {
+                // nincs ilyen felhasznalo
+                throw new Exception("Nemlétező felhasználó");
             }
         }
 
@@ -184,22 +187,19 @@
          */
         function insert() {
             if ($this->checkName() == false) {
-                alert('Van mar ilyen nev');
-                exit();
+                throw new Exception("Van mar ilyen nevu felhasznalo", UserUpdateErrorCode::existingUser);
             } elseif ($this->check_email() == false) {
-                alert('Van mar ilyen email');
-                exit();
+                throw new Exception('Van mar ilyen email', UserUpdateErrorCode::existingEmail);
             } elseif ($this->checkUsername() == false) {
-                alert('Felhasznalo nev foglalt');
-                exit();
+                throw new Exception('Felhasznalo nev foglalt', UserUpdateErrorCode::existingUsername);
             }
 
-            $sql = 'INSERT INTO users (name, email, username, password)' .
+            $sql = 'INSERT INTO users (name, email, username, password, role)' .
                 "VALUES (" .
                 $this->db->quote($this->name, PDO::PARAM_STR) . ", " .
                 $this->db->quote($this->email, PDO::PARAM_STR) . ", " .
                 $this->db->quote($this->username, PDO::PARAM_STR) . ", " .
-                $this->db->quote($this->password, PDO::PARAM_STR) . " )";
+                $this->db->quote($this->password, PDO::PARAM_STR) . ", 'user')";
 
             $no = $this->db->exec($sql);
 
@@ -267,6 +267,16 @@
                 return false;
             else
                 return true;
+        }
+
+        /**
+         * Megadott jelszo ellenorzese
+         */
+        function checkPwd($pwd) {
+            $pwd = filter_var($pwd, FILTER_SANITIZE_STRING);
+            $pwd = md5($pwd);
+
+            return $this->password === $pwd;
         }
 
         public function __toString() {
