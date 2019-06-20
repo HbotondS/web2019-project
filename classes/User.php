@@ -187,22 +187,19 @@
          */
         function insert() {
             if ($this->checkName() == false) {
-                alert('Van mar ilyen nev');
-                exit();
+                throw new Exception("Van mar ilyen nevu felhasznalo", 1);
             } elseif ($this->check_email() == false) {
-                alert('Van mar ilyen email');
-                exit();
+                throw new Exception('Van mar ilyen email', 2);
             } elseif ($this->checkUsername() == false) {
-                alert('Felhasznalo nev foglalt');
-                exit();
+                throw new Exception('Felhasznalo nev foglalt', 3);
             }
 
-            $sql = 'INSERT INTO users (name, email, username, password)' .
+            $sql = 'INSERT INTO users (name, email, username, password, role)' .
                 "VALUES (" .
                 $this->db->quote($this->name, PDO::PARAM_STR) . ", " .
                 $this->db->quote($this->email, PDO::PARAM_STR) . ", " .
                 $this->db->quote($this->username, PDO::PARAM_STR) . ", " .
-                $this->db->quote($this->password, PDO::PARAM_STR) . " )";
+                $this->db->quote($this->password, PDO::PARAM_STR) . ", 'user')";
 
             $no = $this->db->exec($sql);
 

@@ -1,10 +1,20 @@
 <?php
     include_once 'backtohome.php';
+
+    session_start();
 ?>
 
 <div class="cd">
-    <?php if (isset($_GET['error']) && $_GET['error'] == 'notmatchingpassword'): ?>
-        <p>A ket jelszo nem egyezik meg</p>
+    <?php if (isset($_GET['error'])): ?>
+        <?php if ($_GET['error'] == 'notmatchingpassword'): ?>
+            <p>A ket jelszo nem egyezik meg</p>
+        <?php elseif ($_GET['error'] == 1): ?>
+            <p><?= $_SESSION['exception']->getMessage() ?></p>
+        <?php elseif ($_GET['error'] == 2): ?>
+            <p><?= $_SESSION['exception']->getMessage() ?></p>
+        <?php elseif ($_GET['error'] == 3): ?>
+            <p><?= $_SESSION['exception']->getMessage() ?></p>
+        <?php endif; ?>
     <?php endif; ?>
     <h3 class="formc">Regisztracio</h3>
     <form id="myform" action="../moduls/signup.php" method="post">
