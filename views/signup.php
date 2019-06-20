@@ -4,7 +4,7 @@
 
 <div class="cd">
     <h3 class="formc">Regisztracio</h3>
-    <form id="myform" method="post">
+    <form id="myform" action="../moduls/signup.php" method="post">
 
         <label for="name">Felhasznalo nev</label>
         <input id="name" type="text" name="name" maxlength="100" size="40"
@@ -18,11 +18,11 @@
         <label for="uid">Felhasznalo nev</label>
         <input id="uid" type="text" name="uid" maxlength="30" size="30" required placeholder="felhasznalo nev">
 
-        <label for="pwd">Jelszo</label>
-        <input id="pwd" type="password" name="pwd" value="" size="30" required>
+        <label for="pwd1">Jelszo</label>
+        <input id="pwd1" type="password" name="pwd1" minlength="8" maxlength="16" value="" size="30" required>
 
-        <label for="pwd1">Jelszo meg egyszer</label>
-        <input id="pwd1" type="password" name="pwd1" value="" size="30">
+        <label for="pwd2">Jelszo meg egyszer</label>
+        <input id="pwd2" type="password" name="pwd2" minlength="8" maxlength="16" value="" size="30">
 
         <span class="control">
             <input type="reset" name="reset" value="Torles">&nbsp;&nbsp;
