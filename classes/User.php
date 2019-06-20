@@ -120,6 +120,66 @@
         }
 
         /**
+         * Nev felulirasa,
+         * feltetelezzuk a  belso adatok be vannak allitva
+         */
+        function updateName() {
+            if ($this->checkName() == false) {
+                alert('Van mar ilyen nev');
+                exit();
+            } else {
+                $sql = "UPDATE users SET name = " .
+                    $this->db->quote($this->name, PDO::PARAM_STR) .
+                    'WHERE id=' . $this->id;
+                $no = $this->db->exec($sql);
+                if ($no == 1) //sikeres
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+        /**
+         * Email felulirasa,
+         * feltetelezzuk a  belso adatok be vannak allitva
+         */
+        function updateEmail() {
+            if ($this->check_email() == false) {
+                alert('Van mar ilyen email');
+                exit();
+            } else {
+                $sql = "UPDATE users SET email = " .
+                    $this->db->quote($this->email, PDO::PARAM_STR) .
+                    'WHERE id=' . $this->id;
+                $no = $this->db->exec($sql);
+                if ($no == 1) //sikeres
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+        /**
+         * Felhasznalonev felulirasa,
+         * feltetelezzuk a  belso adatok be vannak allitva
+         */
+        function updateUsername() {
+            if ($this->checkUsername() == false) {
+                alert('Felhasznalo nev foglalt');
+                exit();
+            } else {
+                $sql = "UPDATE users SET username = " .
+                    $this->db->quote($this->username, PDO::PARAM_STR) .
+                    'WHERE id=' . $this->id;
+                $no = $this->db->exec($sql);
+                if ($no == 1) //sikeres
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+        /**
          * Uj felhasznalo beszurasa a DB-be
          */
         function insert() {
@@ -148,6 +208,20 @@
                 return false;
             }
             return $this->id;  //siker
+        }
+
+        /**
+         * Torli a felhasznalot a DB-bol
+         */
+        function delete() {
+
+            $q = 'DELETE FROM users WHERE id=' . $this->id;
+
+            $no = $this->exec($q);
+            if ($no == 1) //sikeres
+                return true;
+            else
+                return false;
         }
 
         /**
