@@ -1,1 +1,1 @@
-<div><a href="start_view.php"><button>Vissza a kezdo lapra</button></a></div>
+<div style="float: right"><a href="start_view.php"><button>Vissza a kezdo lapra</button></a></div>

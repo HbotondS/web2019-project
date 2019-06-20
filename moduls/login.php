@@ -15,10 +15,9 @@
 
             }
             if ($user->checkPwd($pwd)) {
-                echo 'sikeres bejelentkezes';
                 session_start();
                 $_SESSION['uid'] = $uid;
-                header("Location: ../views/start_view.php");
+                header("Location: ../views/userView.php");
 
             } else {
                 header("Location: ../views/login.php?error=loginfailed");

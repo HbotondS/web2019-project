@@ -215,9 +215,9 @@
          */
         function delete() {
 
-            $q = 'DELETE FROM users WHERE id=' . $this->id;
+            $sql = 'DELETE FROM users WHERE id=' . $this->id;
 
-            $no = $this->exec($q);
+            $no = $this->db->exec($sql);
             if ($no == 1) //sikeres
                 return true;
             else
