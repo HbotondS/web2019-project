@@ -128,8 +128,7 @@
          */
         function updateName() {
             if ($this->checkName() == false) {
-                alert('Van mar ilyen nev');
-                exit();
+                throw new Exception("Van mar ilyen nevu felhasznalo", UserUpdateErrorCode::existingUser);
             } else {
                 $sql = "UPDATE users SET name = " .
                     $this->db->quote($this->name, PDO::PARAM_STR) .
@@ -148,8 +147,7 @@
          */
         function updateEmail() {
             if ($this->check_email() == false) {
-                alert('Van mar ilyen email');
-                exit();
+                throw new Exception('Van mar ilyen email', UserUpdateErrorCode::existingEmail);
             } else {
                 $sql = "UPDATE users SET email = " .
                     $this->db->quote($this->email, PDO::PARAM_STR) .
@@ -168,8 +166,7 @@
          */
         function updateUsername() {
             if ($this->checkUsername() == false) {
-                alert('Felhasznalo nev foglalt');
-                exit();
+                throw new Exception('Felhasznalo nev foglalt', UserUpdateErrorCode::existingUsername);
             } else {
                 $sql = "UPDATE users SET username = " .
                     $this->db->quote($this->username, PDO::PARAM_STR) .

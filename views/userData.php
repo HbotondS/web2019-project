@@ -21,6 +21,8 @@
     </tbody>
 </table>
 
+<a href="editUser.php"><button>Szerk.</button></a>
+
 <form action="../moduls/deleteUser.php" method="post">
     <button type="submit" name="delete">Vissalepes</button>
 </form>
