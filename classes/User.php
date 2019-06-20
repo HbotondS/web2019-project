@@ -10,9 +10,10 @@
         private $email;
         private $username;
         private $password;
+        private $role;
 
 
-        public function __construct($id = 0, $name = '', $email = '', $username = '', $password = '') {
+        public function __construct($id = 0, $name = '', $email = '', $username = '', $password = '', $role = '') {
             $this->db = (new MyPDO())->connect();
             $this->id = $id;
 
@@ -23,6 +24,7 @@
                 $this->email = $email;
                 $this->username = $username;
                 $this->password = md5($password);
+                $this->role = $role;
             }
         }
 
@@ -60,6 +62,14 @@
 
         public function setPassword($password) {
             $this->password = $password;
+        }
+
+        public function getRole() {
+            return $this->role;
+        }
+
+        public function setRole($role) {
+            $this->role = $role;
         }
 
         /**
@@ -116,6 +126,7 @@
                 $this->email = $a['email'];
                 $this->username = $a['username'];
                 $this->password = $a['password'];
+                $this->role = $a['role'];
             } else {
                 // nincs ilyen felhasznalo
                 throw new Exception("Nemlétező felhasználó");
