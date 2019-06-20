@@ -68,13 +68,7 @@
                 return false;
             } else {
                 $sql = "SELECT * FROM users WHERE id = $id";
-                try {
-                    $this->getData($sql);
-                } catch (Exception $e) {
-                    $msg = $e->getMessage();
-                    echo "<script src='../includes/errorHandler.js'></script>";
-                    echo "<script>dbError('$msg')</script>";
-                }
+                $this->getData($sql);
             }
         }
 
@@ -87,20 +81,26 @@
          * @throws Exception, mikor valamilyen adatbazis hiba van
          */
         private function getData($sql) {
-            $stmt = $this->db->query($sql);
-            if ($a = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                if(!isset( $a['id'])){
-                    throw new Exception("Adatbázis hiba, hiányzó mező");
+            try {
+                $stmt = $this->db->query($sql);
+                if ($a = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    if (!isset($a['id'])) {
+                        throw new Exception("Adatbázis hiba, hiányzó mező");
+                    }
+                    $this->id = $a['id'];
+                    $this->name = $a['name'];
+                    $this->email = $a['email'];
+                    $this->username = $a['username'];
+                    $this->password = $a['password'];
+                    return true;
+                } else {
+                    // nincs ilyen felhasznalo
+                    throw new Exception("Nemlétező felhasznháló");
                 }
-                $this->id = $a['id'];
-                $this->name = $a['name'];
-                $this->email = $a['email'];
-                $this->username = $a['username'];
-                $this->password = $a['password'];
-                return true;
-            } else {
-                // nincs ilyen felhasznalo
-                throw new Exception("Nemlétező felhasznháló");
+            } catch (Exception $e) {
+                $msg = $e->getMessage();
+                echo "<script src='../includes/errorHandler.js'></script>";
+                echo "<script>dbError('$msg')</script>";
             }
         }
 
