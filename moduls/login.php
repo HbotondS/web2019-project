@@ -17,7 +17,9 @@
             if ($user->checkPwd($pwd)) {
                 session_start();
                 $_SESSION['uid'] = $uid;
-                header("Location: ../views/userView.php");
+                if ($user->getRole() === 'user') {
+                    header("Location: ../views/userView.php");
+                }
 
             } else {
                 header("Location: ../views/login.php?error=loginfailed");
