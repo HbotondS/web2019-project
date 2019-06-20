@@ -1,4 +1,5 @@
 <?php
+    include_once '../includes/alert.php';
 
     class User {
         // adatbazis kapcsolat
@@ -61,15 +62,31 @@
             $this->password = $password;
         }
 
-        // kiolvassa az adatokat ha ismert az id
-        private function getDataById($id) {
+        /**
+         * Kiolvassa az adatokat ha ismert az id
+         */
+        function getDataById($id) {
             $idsql = filter_var($id, FILTER_VALIDATE_INT);
             if ($idsql === false) {
                 return false;
             } else {
                 $sql = "SELECT * FROM users WHERE id = $id";
-                $this->getData($sql);
+                return $this->getData($sql);
             }
+        }
+
+        /**
+         * Kiolvassa az adatokat ha ismert az e-mail cim
+         */
+        function getDataByEmail($email) {
+            $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+            if ($email === false) {
+                return false;
+            }
+            $email = $this->db->quote($email, PDO::PARAM_STR);
+
+            $sql = "SELECT * FROM users WHERE email = $email";
+            return $this->getData($sql);
         }
 
         /**
@@ -95,13 +112,87 @@
                     return true;
                 } else {
                     // nincs ilyen felhasznalo
-                    throw new Exception("Nemlétező felhasznháló");
+                    throw new Exception("Nemlétező felhasználó");
                 }
             } catch (Exception $e) {
-                $msg = $e->getMessage();
-                echo "<script src='../includes/errorHandler.js'></script>";
-                echo "<script>dbError('$msg')</script>";
+                dbError($e->getMessage());
             }
+        }
+
+        /**
+         * Uj felhasznalo beszurasa a DB-be
+         */
+        function insert() {
+            if ($this->checkName() == false) {
+                alert('Van mar ilyen nev');
+                exit();
+            } elseif ($this->check_email() == false) {
+                alert('Van mar ilyen email');
+                exit();
+            } elseif ($this->checkUsername() == false) {
+                alert('Felhasznalo nev foglalt');
+                exit();
+            }
+
+            $sql = 'INSERT INTO users (name, email, username, password)' .
+                "VALUES (" .
+                $this->db->quote($this->name, PDO::PARAM_STR) . ", " .
+                $this->db->quote($this->email, PDO::PARAM_STR) . ", " .
+                $this->db->quote($this->username, PDO::PARAM_STR) . ", " .
+                $this->db->quote($this->password, PDO::PARAM_STR) . " )";
+
+            $no = $this->db->exec($sql);
+
+            if ($no != 1) {
+                // ha nem sikerult beiirni
+                return false;
+            }
+            return $this->id;  //siker
+        }
+
+        /**
+         * Letezo nev ellenorzese
+         */
+        function checkName() {
+            $sql = "SELECT count(*) FROM users WHERE name=" .
+                $this->db->quote($this->name, PDO::PARAM_STR);
+            $stmt = $this->db->query($sql);
+            $no = $stmt->fetch(PDO::FETCH_NUM);
+
+            if ($no[0] >= 1)
+                return false;
+            else
+                return true;
+        }
+
+        /**
+         * Letezo e-mail ellenorzese
+         */
+        function check_email() {
+            $sql = "SELECT count(*) FROM users WHERE email=" .
+                $this->db->quote($this->email, PDO::PARAM_STR);
+            $stmt = $this->db->query($sql);
+            $r = $stmt->fetch(PDO::FETCH_NUM);
+
+            if ($r[0] >= 1)
+                return false;
+            else
+                return true;
+        }
+
+        /**
+         * Letezo felhasznalonev ellenorzese
+         */
+        function checkUsername() {
+            $sql = "SELECT count(*) FROM users WHERE username=" .
+                $this->db->quote($this->username, PDO::PARAM_STR);
+            $stmt = $this->db->query($sql);
+            $no = $stmt->fetch(PDO::FETCH_NUM);
+
+            if ($no[0] >= 1)
+                return false;
+            else
+                return true;
         }
 
         public function __toString() {
