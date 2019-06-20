@@ -187,11 +187,11 @@
          */
         function insert() {
             if ($this->checkName() == false) {
-                throw new Exception("Van mar ilyen nevu felhasznalo", 1);
+                throw new Exception("Van mar ilyen nevu felhasznalo", UserUpdateErrorCode::existingUser);
             } elseif ($this->check_email() == false) {
-                throw new Exception('Van mar ilyen email', 2);
+                throw new Exception('Van mar ilyen email', UserUpdateErrorCode::existingEmail);
             } elseif ($this->checkUsername() == false) {
-                throw new Exception('Felhasznalo nev foglalt', 3);
+                throw new Exception('Felhasznalo nev foglalt', UserUpdateErrorCode::existingUsername);
             }
 
             $sql = 'INSERT INTO users (name, email, username, password, role)' .
