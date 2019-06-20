@@ -10,8 +10,7 @@
         $password2 = $_POST['pwd2'];
 
         if ($password1 !== $password2) {
-            //todo: handle exception
-            echo 'a ket jelszo nem egyezik';
+            header("Location: ../views/signup.php?error=notmatchingpassword");
             exit();
         }
 

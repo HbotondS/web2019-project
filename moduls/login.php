@@ -11,20 +11,17 @@
             try {
                 $user->getDataByUsername($uid);
             } catch (Exception $e) {
-                //todo: handle exception
-                echo 'nincs ilyen adat';
+                header("Location: ../views/login.php?error=loginfailed");
 
             }
             if ($user->checkPwd($pwd)) {
-                //todo: login screen
                 echo 'sikeres bejelentkezes';
                 session_start();
                 $_SESSION['uid'] = $uid;
                 header("Location: ../views/start_view.php");
 
             } else {
-                //todo: handle exception
-                echo 'hibas password';
+                header("Location: ../views/login.php?error=loginfailed");
             }
 
         }

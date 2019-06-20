@@ -3,6 +3,9 @@
 ?>
 
 <div class="cd">
+    <?php if (isset($_GET['error']) && $_GET['error'] == 'notmatchingpassword'): ?>
+        <p>A ket jelszo nem egyezik meg</p>
+    <?php endif; ?>
     <h3 class="formc">Regisztracio</h3>
     <form id="myform" action="../moduls/signup.php" method="post">
 

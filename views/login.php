@@ -3,6 +3,9 @@
 ?>
 
 <div>
+    <?php if (isset($_GET['error']) && $_GET['error'] == 'loginfailed'): ?>
+        <p>Hibas felhasznalonev vagy jelszo</p>
+    <?php endif; ?>
     <h3>Belepes</h3>
     <form id="myform" action="../moduls/login.php" method="post">
         <label for="uid">Felhasznalo nev</label>
