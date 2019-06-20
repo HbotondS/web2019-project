@@ -68,15 +68,27 @@
                 return false;
             } else {
                 $sql = "SELECT * FROM users WHERE id = $id";
-                $this->getData($sql);
+                try {
+                    $this->getData($sql);
+                } catch (Exception $e) {
+                    $msg = $e->getMessage();
+                    echo "<script src='../includes/errorHandler.js'></script>";
+                    echo "<script>dbError('$msg')</script>";
+                }
             }
         }
 
-        // egy lekerdezes alapjan lekeri egy felhasznalo adatait
+        /**
+         * Egy lekerdezes alapjan lekeri egy felhasznalo adatait
+         *
+         * @param string, az sql lekerdezes
+         * @return bool, igazat terit vissza ha a lekerdezes sikeres
+         *         maskepp egy Exception-t dob
+         * @throws Exception, mikor valamilyen adatbazis hiba van
+         */
         private function getData($sql) {
             $stmt = $this->db->query($sql);
-            $a = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($a) {
+            if ($a = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 if(!isset( $a['id'])){
                     throw new Exception("Adatbázis hiba, hiányzó mező");
                 }
@@ -88,7 +100,7 @@
                 return true;
             } else {
                 // nincs ilyen felhasznalo
-                return false;
+                throw new Exception("Nemlétező felhasznháló");
             }
         }
 
