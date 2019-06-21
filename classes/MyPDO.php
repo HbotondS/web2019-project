@@ -22,4 +22,24 @@
                 echo 'Connect failed: ' . $e->getMessage();
             }
         }
+
+        public function getAllUser() {
+            $db = $this->connect();
+            $sql = "SELECT * FROM users WHERE role = 'user'";
+            $stmt = $db->query($sql);
+            $users = array();
+            while ($a = $stmt->fetch()) {
+                $user = new User();
+                $user->setId($a['id']);
+                $user->setName($a['name']);
+                $user->setEmail($a['email']);
+                $user->setUsername($a['username']);
+                $user->setPassword($a['password']);
+                $user->setRole($a['role']);
+
+                array_push($users, $user);
+            }
+
+            return $users;
+        }
     }
