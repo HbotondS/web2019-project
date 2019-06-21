@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 20, 2019 at 07:27 PM
+-- Generation Time: Jun 21, 2019 at 02:25 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -34,16 +34,17 @@ CREATE TABLE `users` (
   `email` varchar(30) NOT NULL,
   `username` varchar(16) NOT NULL,
   `password` varchar(1000) NOT NULL,
-  `role` varchar(10) NOT NULL
+  `role` varchar(10) NOT NULL,
+  `doksi` blob
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `role`) VALUES
-(1, 'Kis Pista', 'kisp@gmail.com', 'kisp69', '827ccb0eea8a706c4c34a16891f84e7b', 'user'),
-(2, 'Admin', 'admin@admin.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `role`, `doksi`) VALUES
+(1, 'Kis Pista', 'kisp@gmail.com', 'kisp69', '827ccb0eea8a706c4c34a16891f84e7b', 'user', NULL),
+(2, 'Admin', 'admin@admin.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', NULL);
 
 --
 -- Indexes for dumped tables

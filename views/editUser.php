@@ -33,3 +33,9 @@
     <button type="submit" name="update">Mentes</button>
     <button type="submit" name="cancel">Megse</button>
 </form>
+
+<label>Doksi hozzadasa</label>
+<form action="../moduls/editUser.php" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button name="upload">Feltolt</button>
+</form>
