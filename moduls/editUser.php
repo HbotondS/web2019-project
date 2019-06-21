@@ -22,4 +22,10 @@
         }
         header("Location: ../views/userData.php");
         exit();
+    } elseif (isset($_POST['upload'])) {
+        $data = file_get_contents($_FILES['file']['tmp_name']);
+
+        $user->attachDoc($data);
+        header("Location: ../views/userData.php");
+        exit();
     }

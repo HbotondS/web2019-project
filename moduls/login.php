@@ -19,10 +19,15 @@
                 $_SESSION['uid'] = $uid;
                 if ($user->getRole() === 'user') {
                     header("Location: ../views/userView.php");
+                    exit();
+                } elseif ($user->getRole() === 'admin') {
+                    header("Location: ../views/adminView.php");
+                    exit();
                 }
 
             } else {
                 header("Location: ../views/login.php?error=loginfailed");
+                exit();
             }
 
         }

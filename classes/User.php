@@ -11,9 +11,10 @@
         private $username;
         private $password;
         private $role;
+        private $doc;
 
 
-        public function __construct($id = 0, $name = '', $email = '', $username = '', $password = '', $role = '') {
+        public function __construct($id = 0, $name = '', $email = '', $username = '', $password = '', $role = '', $doc = null) {
             $this->db = (new MyPDO())->connect();
             $this->id = $id;
 
@@ -30,6 +31,14 @@
 
         function __destruct() {
 
+        }
+
+        public function getId() {
+            return $this->id;
+        }
+
+        public function setId($id) {
+            $this->id = $id;
         }
 
         public function getName() {
@@ -127,6 +136,7 @@
                 $this->username = $a['username'];
                 $this->password = $a['password'];
                 $this->role = $a['role'];
+                $this->doc = $a['doksi'];
             } else {
                 // nincs ilyen felhasznalo
                 throw new Exception("Nemlétező felhasználó");
@@ -187,6 +197,23 @@
                     return true;
                 else
                     return false;
+            }
+        }
+
+        /**
+         * Dokumentum hozzaadasa a userhez
+         */
+        function attachDoc($doc) {
+            $sql = "UPDATE users SET doksi = ?" .
+                "WHERE id=" . $this->id;
+            $sql = $this->db->prepare($sql);
+            $sql->bindParam(1, $doc);
+            $no = $sql->execute();
+            if ($no == 1) {//sikeres
+                $this->doc = $doc;
+                return true;
+            } else {
+                return false;
             }
         }
 
