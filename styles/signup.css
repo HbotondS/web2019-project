@@ -1,0 +1,12 @@
+.my-container {
+    width: 400px;
+    padding-top: 20px;
+}
+
+.row {
+    padding-bottom: 10px;
+}
+
+input {
+    float: right;
+}
