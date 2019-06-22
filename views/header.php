@@ -1,3 +1,5 @@
+<link href="../styles/error.css" rel="stylesheet">
+
 <div>
 
     <?php if (!isset($_SESSION['uid'])): ?>

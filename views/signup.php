@@ -7,15 +7,17 @@
 
 <div class="cd">
     <?php if (isset($_GET['error'])): ?>
+        <p class="error">
         <?php if ($_GET['error'] == 'notmatchingpassword'): ?>
-            <p>A ket jelszo nem egyezik meg</p>
+            A ket jelszo nem egyezik meg
         <?php elseif ($_GET['error'] == UserUpdateErrorCode::existingUser): ?>
-            <p><?= $_SESSION['exception']->getMessage() ?></p>
+            <?= $_SESSION['exception']->getMessage() ?>
         <?php elseif ($_GET['error'] == UserUpdateErrorCode::existingEmail): ?>
-            <p><?= $_SESSION['exception']->getMessage() ?></p>
+            <?= $_SESSION['exception']->getMessage() ?>
         <?php elseif ($_GET['error'] == UserUpdateErrorCode::existingUsername): ?>
-            <p><?= $_SESSION['exception']->getMessage() ?></p>
+            <?= $_SESSION['exception']->getMessage() ?>
         <?php endif; ?>
+        </p>
     <?php endif; ?>
     <h3 class="formc">Regisztracio</h3>
     <form id="myform" action="../moduls/signup.php" method="post">
