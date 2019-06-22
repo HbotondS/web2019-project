@@ -46,7 +46,7 @@
         </div>
 
         <div class="row">
-            <label for="pwd2">Jelszó még egyszer:</label>
+            <label for="pwd2">Jelszó mégegyszer:</label>
             <input id="pwd2" type="password" name="pwd2" minlength="8" maxlength="16" value="" size="30">
         </div>
 
