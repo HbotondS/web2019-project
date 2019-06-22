@@ -11,7 +11,6 @@
         private $username;
         private $password;
         private $role;
-        private $doc;
 
 
         public function __construct($id = 0, $name = '', $email = '', $username = '', $password = '', $role = '', $doc = null) {
@@ -149,7 +148,7 @@
          */
         function updateName() {
             if ($this->checkName() == false) {
-                throw new Exception("Van mar ilyen nevu felhasznalo", UserUpdateErrorCode::existingUser);
+                throw new Exception("Van már ilyen nevá felhasználó", UserUpdateErrorCode::existingUser);
             } else {
                 $sql = "UPDATE users SET name = " .
                     $this->db->quote($this->name, PDO::PARAM_STR) .
@@ -168,7 +167,7 @@
          */
         function updateEmail() {
             if ($this->check_email() == false) {
-                throw new Exception('Van mar ilyen email', UserUpdateErrorCode::existingEmail);
+                throw new Exception('Van már ilyen e-mail', UserUpdateErrorCode::existingEmail);
             } else {
                 $sql = "UPDATE users SET email = " .
                     $this->db->quote($this->email, PDO::PARAM_STR) .
@@ -187,7 +186,7 @@
          */
         function updateUsername() {
             if ($this->checkUsername() == false) {
-                throw new Exception('Felhasznalo nev foglalt', UserUpdateErrorCode::existingUsername);
+                throw new Exception('Felhasználónév foglalt', UserUpdateErrorCode::existingUsername);
             } else {
                 $sql = "UPDATE users SET username = " .
                     $this->db->quote($this->username, PDO::PARAM_STR) .
@@ -204,13 +203,12 @@
          * Dokumentum hozzaadasa a userhez
          */
         function attachDoc($doc) {
-            $sql = "UPDATE users SET doksi = ?" .
-                "WHERE id=" . $this->id;
+            $sql = "INSERT INTO docs (userId, doc) VALUES (?, ?);";
             $sql = $this->db->prepare($sql);
-            $sql->bindParam(1, $doc);
+            $sql->bindParam(1, $this->id);
+            $sql->bindParam(2, $doc);
             $no = $sql->execute();
             if ($no == 1) {//sikeres
-                $this->doc = $doc;
                 return true;
             } else {
                 return false;
@@ -222,11 +220,11 @@
          */
         function insert() {
             if ($this->checkName() == false) {
-                throw new Exception("Van mar ilyen nevu felhasznalo", UserUpdateErrorCode::existingUser);
+                throw new Exception("Van már ilyen nevű felhasználó", UserUpdateErrorCode::existingUser);
             } elseif ($this->check_email() == false) {
-                throw new Exception('Van mar ilyen email', UserUpdateErrorCode::existingEmail);
+                throw new Exception('Van már ilyen e-mail', UserUpdateErrorCode::existingEmail);
             } elseif ($this->checkUsername() == false) {
-                throw new Exception('Felhasznalo nev foglalt', UserUpdateErrorCode::existingUsername);
+                throw new Exception('Felhasználónév foglalt', UserUpdateErrorCode::existingUsername);
             }
 
             $sql = 'INSERT INTO users (name, email, username, password, role)' .

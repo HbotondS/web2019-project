@@ -8,15 +8,15 @@
 <table>
     <tbody>
     <tr>
-        <td>Nev:</td>
+        <td>Név:</td>
         <td><?= $user->getName() ?></td>
     </tr>
     <tr>
-        <td>Email:</td>
+        <td>E-mail:</td>
         <td><?= $user->getEmail() ?></td>
     </tr>
     <tr>
-        <td>Felhasznalo nev:</td>
+        <td>Felhasználónév:</td>
         <td><?= $user->getUsername() ?></td>
     </tr>
     </tbody>
@@ -25,5 +25,5 @@
 <a href="editUser.php"><button>Szerk.</button></a>
 
 <form action="../moduls/deleteUser.php" method="post">
-    <button type="submit" name="delete">Vissalepes</button>
+    <button type="submit" name="delete">Visszalépes</button>
 </form>
