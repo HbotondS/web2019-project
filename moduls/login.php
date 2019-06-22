@@ -1,6 +1,5 @@
 <?php
     include_once '../includes/autoload.php';
-    include_once '../includes/consoleLog.php';
 
     $user = new User();
 

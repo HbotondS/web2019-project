@@ -10,6 +10,8 @@
         <?= $_SESSION['exception']->getMessage() ?>
     <?php elseif ($_GET['error'] == UserUpdateErrorCode::existingEmail): ?>
         <?= $_SESSION['exception']->getMessage() ?>
+    <?php elseif ($_GET['error'] == 'upload'): ?>
+        <?= 'Hiba törtönt a feltöltés közbe, probálkozz később'?>
     <?php endif; ?>
     </p>
 <?php endif; ?>

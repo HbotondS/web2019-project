@@ -135,16 +135,13 @@
                 $this->username = $a['username'];
                 $this->password = $a['password'];
                 $this->role = $a['role'];
-                $this->doc = $a['doksi'];
             } else {
-                // nincs ilyen felhasznalo
                 throw new Exception("Nemlétező felhasználó");
             }
         }
 
         /**
-         * Nev felulirasa,
-         * feltetelezzuk a  belso adatok be vannak allitva
+         * Nev felulirasa feltetelezzuk a  belso adatok be vannak allitva
          */
         function updateName() {
             if ($this->checkName() == false) {
@@ -202,11 +199,13 @@
         /**
          * Dokumentum hozzaadasa a userhez
          */
-        function attachDoc($doc) {
-            $sql = "INSERT INTO docs (userId, doc) VALUES (?, ?);";
+        function attachDoc($name, $mime, $doc) {
+            $sql = "INSERT INTO docs (userId, doc, name,  mime) VALUES (?,?,?,?);";
             $sql = $this->db->prepare($sql);
             $sql->bindParam(1, $this->id);
             $sql->bindParam(2, $doc);
+            $sql->bindParam(3, $name);
+            $sql->bindParam(4, $mime);
             $no = $sql->execute();
             if ($no == 1) {//sikeres
                 return true;

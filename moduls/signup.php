@@ -1,6 +1,5 @@
 <?php
     include_once '../includes/autoload.php';
-    include_once '../includes/consoleLog.php';
 
     session_start();
 
@@ -20,7 +19,6 @@
             $user = new User(0, $name, $email, $username, $password1);
             $user->insert();
         } catch (Exception $e) {
-            myLog('gaga');
             $_SESSION['exception'] = $e;
             header("Location: ../views/signup.php?error=" . $e->getCode());
             exit();
