@@ -32,8 +32,8 @@
         </tr>
         </tbody>
     </table>
-    <button type="submit" name="update">Mentes</button>
-    <button type="submit" name="cancel">Megse</button>
+    <button type="submit" name="update">Mentés</button>
+    <button type="submit" name="cancel">Mégse</button>
 </form>
 
 <label>Doksi hozzáadása</label>

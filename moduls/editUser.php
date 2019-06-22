@@ -9,12 +9,15 @@
         $name = $_POST['name'];
         $email = $_POST['email'];
 
-
-        $user->setName($name);
-        $user->setEmail($email);
         try{
-            $user->updateName();
-            $user->updateEmail();
+            if ($name != $user->getName()) {
+                $user->setName($name);
+                $user->updateName();
+            }
+            if ($email != $user->getEmail()) {
+                $user->setEmail($email);
+                $user->updateEmail();
+            }
         } catch (Exception $e) {
             $_SESSION['exception'] = $e;
             header("Location: ../views/editUser.php?error=" . $e->getCode());

@@ -148,7 +148,7 @@
          */
         function updateName() {
             if ($this->checkName() == false) {
-                throw new Exception("Van már ilyen nevá felhasználó", UserUpdateErrorCode::existingUser);
+                throw new Exception("Van már ilyen nevű felhasználó", UserUpdateErrorCode::existingUser);
             } else {
                 $sql = "UPDATE users SET name = " .
                     $this->db->quote($this->name, PDO::PARAM_STR) .
