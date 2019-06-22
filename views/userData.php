@@ -27,3 +27,8 @@
 <form action="../moduls/deleteUser.php" method="post">
     <button type="submit" name="delete">Visszalépes</button>
 </form>
+
+<h3>Fájljaim</h3>
+<?php foreach ($user->getAllDoc() as $doc): ?>
+    <a target="_blank" href="view.php?id=<?=$doc['id']?>"><?=$doc['name']?></a>
+<?php endforeach; ?>
