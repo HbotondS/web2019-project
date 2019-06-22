@@ -11,7 +11,6 @@
         private $username;
         private $password;
         private $role;
-        private $doc;
 
 
         public function __construct($id = 0, $name = '', $email = '', $username = '', $password = '', $role = '', $doc = null) {
@@ -204,13 +203,12 @@
          * Dokumentum hozzaadasa a userhez
          */
         function attachDoc($doc) {
-            $sql = "UPDATE users SET doksi = ?" .
-                "WHERE id=" . $this->id;
+            $sql = "INSERT INTO docs (userId, doc) VALUES (?, ?);";
             $sql = $this->db->prepare($sql);
-            $sql->bindParam(1, $doc);
+            $sql->bindParam(1, $this->id);
+            $sql->bindParam(2, $doc);
             $no = $sql->execute();
             if ($no == 1) {//sikeres
-                $this->doc = $doc;
                 return true;
             } else {
                 return false;
