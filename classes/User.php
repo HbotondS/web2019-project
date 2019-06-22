@@ -148,7 +148,7 @@
          */
         function updateName() {
             if ($this->checkName() == false) {
-                throw new Exception("Van mar ilyen nevu felhasznalo", UserUpdateErrorCode::existingUser);
+                throw new Exception("Van már ilyen nevá felhasználó", UserUpdateErrorCode::existingUser);
             } else {
                 $sql = "UPDATE users SET name = " .
                     $this->db->quote($this->name, PDO::PARAM_STR) .
@@ -167,7 +167,7 @@
          */
         function updateEmail() {
             if ($this->check_email() == false) {
-                throw new Exception('Van mar ilyen email', UserUpdateErrorCode::existingEmail);
+                throw new Exception('Van már ilyen e-mail', UserUpdateErrorCode::existingEmail);
             } else {
                 $sql = "UPDATE users SET email = " .
                     $this->db->quote($this->email, PDO::PARAM_STR) .
@@ -186,7 +186,7 @@
          */
         function updateUsername() {
             if ($this->checkUsername() == false) {
-                throw new Exception('Felhasznalo nev foglalt', UserUpdateErrorCode::existingUsername);
+                throw new Exception('Felhasználónév foglalt', UserUpdateErrorCode::existingUsername);
             } else {
                 $sql = "UPDATE users SET username = " .
                     $this->db->quote($this->username, PDO::PARAM_STR) .
@@ -220,11 +220,11 @@
          */
         function insert() {
             if ($this->checkName() == false) {
-                throw new Exception("Van mar ilyen nevu felhasznalo", UserUpdateErrorCode::existingUser);
+                throw new Exception("Van már ilyen nevű felhasználó", UserUpdateErrorCode::existingUser);
             } elseif ($this->check_email() == false) {
-                throw new Exception('Van mar ilyen email', UserUpdateErrorCode::existingEmail);
+                throw new Exception('Van már ilyen e-mail', UserUpdateErrorCode::existingEmail);
             } elseif ($this->checkUsername() == false) {
-                throw new Exception('Felhasznalo nev foglalt', UserUpdateErrorCode::existingUsername);
+                throw new Exception('Felhasználónév foglalt', UserUpdateErrorCode::existingUsername);
             }
 
             $sql = 'INSERT INTO users (name, email, username, password, role)' .

@@ -17,14 +17,14 @@
     <table>
         <tbody>
         <tr>
-            <td>Nev:</td>
+            <td>Név:</td>
             <td>
                 <input id="name" type="text" name="name" maxlength="100" size="20" required
                        value="<?= $user->getName() ?>">
             </td>
         </tr>
         <tr>
-            <td>Email:</td>
+            <td>E-mail:</td>
             <td>
                 <input id="email" type="email" name="email" maxlength="100" size="20" required value="
                 <?= $user->getEmail() ?>">
@@ -36,8 +36,8 @@
     <button type="submit" name="cancel">Megse</button>
 </form>
 
-<label>Doksi hozzadasa</label>
+<label>Doksi hozzáadása</label>
 <form action="../moduls/editUser.php" method="post" enctype="multipart/form-data">
     <input type="file" name="file">
-    <button name="upload">Feltolt</button>
+    <button name="upload">Feltölt</button>
 </form>

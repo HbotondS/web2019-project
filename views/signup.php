@@ -36,7 +36,7 @@
         </div>
 
         <div class="row">
-            <label for="uid">Felhasználó név:</label>
+            <label for="uid">Felhasználónév:</label>
             <input id="uid" type="text" name="uid" maxlength="30" size="30" required>
         </div>
 

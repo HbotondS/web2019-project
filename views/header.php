@@ -4,13 +4,13 @@
 
     <?php if (!isset($_SESSION['uid'])): ?>
         <div style="float: right">
-            <a href="login.php"><button>Belepes</button></a>
-            <a href="signup.php"><button>Regisztralas</button></a>
+            <a href="login.php"><button>Belépés</button></a>
+            <a href="signup.php"><button>Regisztrálás</button></a>
         </div>
     <?php else: ?>
         <div style="float: right">
-            <a href="userData.php"><button>Sajat adataim</button></a>
-            <a href="../moduls/logout.php"><button type="submit">Kilepes</button></a>
+            <a href="userData.php"><button>Saját adataim</button></a>
+            <a href="../moduls/logout.php"><button type="submit">Kilépes</button></a>
         </div>
     <?php   endif; ?>
 
