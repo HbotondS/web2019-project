@@ -215,6 +215,22 @@
         }
 
         /**
+         * Torli a parameterben atadott dokumentumot
+         */
+        function delDoc($doc) {
+            $sql = "DELETE FROM docs WHERE userid=? and id=?;";
+            $sql = $this->db->prepare($sql);
+            $sql->bindParam(1, $this->id);
+            $sql->bindParam(2, $doc);
+            $no = $sql->execute();
+            if ($no == 1) {//sikeres
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        /**
          * Osszes dokumentum visszateritese, ami az adott felhasznalohoz tartozik
          */
         function getAllDoc() {

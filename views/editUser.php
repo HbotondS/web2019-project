@@ -11,7 +11,9 @@
     <?php elseif ($_GET['error'] == UserUpdateErrorCode::existingEmail): ?>
         <?= $_SESSION['exception']->getMessage() ?>
     <?php elseif ($_GET['error'] == 'upload'): ?>
-        <?= 'Hiba törtönt a feltöltés közbe, probálkozz később'?>
+        <?= 'Hiba törtönt a feltöltés közben, probálkozz később'?>
+    <?php elseif ($_GET['error'] == 'delDoc'): ?>
+        <?= 'Hiba törtönt a dokumentum törlése közben, probálkozz később'?>
     <?php endif; ?>
     </p>
 <?php endif; ?>

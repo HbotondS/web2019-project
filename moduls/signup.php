@@ -23,5 +23,6 @@
             header("Location: ../views/signup.php?error=" . $e->getCode());
             exit();
         }
-        echo 'Regisztracio sikeres';
+        header("Location: ../views/signup.php?signup=success");
+        exit();
     }

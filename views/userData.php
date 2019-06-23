@@ -29,6 +29,13 @@
 </form>
 
 <h3>Fájljaim</h3>
+<table>
 <?php foreach ($user->getAllDoc() as $doc): ?>
-    <a target="_blank" href="view.php?id=<?=$doc['id']?>"><?=$doc['name']?></a>
+    <tr>
+        <td><a target="_blank" href="view.php?id=<?=$doc['id']?>"><?=$doc['name']?></a></td>
+        <td>
+            <a target="_self" href="../moduls/delDec.php?id=<?=$doc['id']?>"><button>Töröl</button></a>
+        </td>
+    </tr>
 <?php endforeach; ?>
+</table>
