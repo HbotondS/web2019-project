@@ -1,0 +1,36 @@
+.news {
+    width: 400px;
+    border-style: solid;
+    border-width: 0;
+    border-bottom-width: 2px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+
+.news > p {
+    margin: 0;
+}
+
+.content {
+    overflow-y: auto;
+    height: 100px;
+    border: solid 1px;
+}
+
+.title {
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+
+.author {
+    float: right;
+    font-style: italic;
+    padding-bottom: 5px;
+    font-size: 15px;
+}
+
+.container {
+    float: right;
+    overflow-y: auto;
+    height: 600px;
+}

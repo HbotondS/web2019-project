@@ -236,14 +236,7 @@
         function getAllDoc() {
             $sql = "SELECT * FROM docs WHERE userid = $this->id;";
             $stmt = $this->db->query($sql);
-            //return $stmt->fetchAll();
-            $users = array();
-            while ($a = $stmt->fetch()) {
-
-                array_push($users, $a);
-
-            }
-            return $users;
+            return $stmt->fetchAll();
         }
 
         /**

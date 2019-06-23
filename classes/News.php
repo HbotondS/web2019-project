@@ -118,4 +118,14 @@
                 throw new Exception('Hiba történt a létrehozás során, próbálkozz később.');
             }
         }
+
+        /**
+         * Visszateriti az DB-ben talalhato osszes hirt
+         */
+        static function getAllNews() {
+            $db = (new MyPDO())->connect();
+            $sql = "SELECT * FROM news ORDER BY date DESC;";
+            $stmt = $db->query($sql);
+            return $stmt->fetchAll();
+        }
     }
