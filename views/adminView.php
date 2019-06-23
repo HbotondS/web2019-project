@@ -21,7 +21,7 @@
             <td><?= $user->getName() ?></td>
             <td><?= $user->getEmail() ?></td>
             <td><?= $user->getUsername() ?></td>
-            <td><a target="_blank" href="adminUserView.php?id=<?=$user->getId()?>"><button>Megnyitás</button></a></td>
+            <td><a target="_self" href="adminUserView.php?id=<?=$user->getId()?>"><button>Megnyitás</button></a></td>
         </tr>
     <?php endforeach; ?>
     </tbody>
