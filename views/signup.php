@@ -22,7 +22,7 @@
             <?php endif; ?>
         </p>
     <?php endif; ?>
-    <h3 class="formc">Regisztráció</h3>
+    <h3>Regisztráció</h3>
     <form id="myform" action="../moduls/signup.php" method="post">
 
         <div class="row">

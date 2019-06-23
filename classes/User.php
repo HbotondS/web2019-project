@@ -13,7 +13,7 @@
         private $role;
 
 
-        public function __construct($id = 0, $name = '', $email = '', $username = '', $password = '', $role = '', $doc = null) {
+        public function __construct($id = 0, $name = '', $email = '', $username = '', $password = '', $role = '') {
             $this->db = (new MyPDO())->connect();
             $this->id = $id;
 

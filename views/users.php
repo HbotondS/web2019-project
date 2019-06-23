@@ -6,7 +6,7 @@
     $users = (new MyPDO())->getAllUser();
 ?>
 
-<a target="_self" href="adminView.php"><button type="submit" name="cancel">Vissza</button></a>
+<a target="_self" href="adminView.php"><button>Vissza</button></a>
 <h3>Az összes felhasználó</h3>
 <table>
     <thead>

@@ -5,7 +5,7 @@
     require_once '../moduls/adminUser.php';
 ?>
 
-<a target="_self" href="users.php"><button type="submit" name="cancel">Vissza</button></a>
+<a target="_self" href="users.php"><button>Vissza</button></a>
 <div class="my-container">
     <label class="title">Adatok</label>
     <table>
