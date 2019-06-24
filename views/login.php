@@ -6,7 +6,7 @@
     <?php if (isset($_GET['error']) && $_GET['error'] == 'loginfailed'): ?>
         <p class="error">Hibás felhasználónév vagy jelszó</p>
     <?php endif; ?>
-    <h3>Belepes</h3>
+    <h3>Belépés</h3>
     <form id="myform" action="../moduls/login.php" method="post">
         <div class="row">
             <label for="uid">Felhasználónév:</label>

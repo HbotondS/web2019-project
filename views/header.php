@@ -1,4 +1,4 @@
-<link href="../styles/error.css" rel="stylesheet">
+<link href="../styles/messages.css" rel="stylesheet">
 
 <div>
 

@@ -9,12 +9,15 @@
         $name = $_POST['name'];
         $email = $_POST['email'];
 
-
-        $user->setName($name);
-        $user->setEmail($email);
         try{
-            $user->updateName();
-            $user->updateEmail();
+            if ($name != $user->getName()) {
+                $user->setName($name);
+                $user->updateName();
+            }
+            if ($email != $user->getEmail()) {
+                $user->setEmail($email);
+                $user->updateEmail();
+            }
         } catch (Exception $e) {
             $_SESSION['exception'] = $e;
             header("Location: ../views/editUser.php?error=" . $e->getCode());
@@ -23,9 +26,15 @@
         header("Location: ../views/userData.php");
         exit();
     } elseif (isset($_POST['upload'])) {
+        $mime = $_FILES['file']['type'];
+        $name = $_FILES['file']['name'];
         $data = file_get_contents($_FILES['file']['tmp_name']);
 
-        $user->attachDoc($data);
-        header("Location: ../views/userData.php");
-        exit();
+        if ($user->attachDoc($name, $mime, $data) == 1) {
+            header("Location: ../views/userData.php");
+            exit();
+        } else {
+            header("Location: ../views/editUser.php?error=upload");
+            exit();
+        }
     }

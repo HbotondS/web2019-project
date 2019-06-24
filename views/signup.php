@@ -6,6 +6,9 @@
 ?>
 
 <div class="my-container">
+    <?php if (isset($_GET['signup'])): ?>
+        <p class="success">Regisztráció sikeres</p>
+    <?php endif; ?>
     <?php if (isset($_GET['error'])): ?>
         <p class="error">
             <?php if ($_GET['error'] == 'notmatchingpassword'): ?>
@@ -19,7 +22,7 @@
             <?php endif; ?>
         </p>
     <?php endif; ?>
-    <h3 class="formc">Regisztráció</h3>
+    <h3>Regisztráció</h3>
     <form id="myform" action="../moduls/signup.php" method="post">
 
         <div class="row">

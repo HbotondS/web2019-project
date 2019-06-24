@@ -10,6 +10,10 @@
         <?= $_SESSION['exception']->getMessage() ?>
     <?php elseif ($_GET['error'] == UserUpdateErrorCode::existingEmail): ?>
         <?= $_SESSION['exception']->getMessage() ?>
+    <?php elseif ($_GET['error'] == 'upload'): ?>
+        <?= 'Hiba törtönt a feltöltés közben, probálkozz később'?>
+    <?php elseif ($_GET['error'] == 'delDoc'): ?>
+        <?= 'Hiba törtönt a dokumentum törlése közben, probálkozz később'?>
     <?php endif; ?>
     </p>
 <?php endif; ?>
@@ -32,8 +36,8 @@
         </tr>
         </tbody>
     </table>
-    <button type="submit" name="update">Mentes</button>
-    <button type="submit" name="cancel">Megse</button>
+    <button type="submit" name="update">Mentés</button>
+    <button type="submit" name="cancel">Mégse</button>
 </form>
 
 <label>Doksi hozzáadása</label>
